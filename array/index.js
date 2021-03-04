@@ -1,25 +1,89 @@
-// Array initialization, element access and console.log
-var a = [];
+var process = require('process');
 
-for (let i=0; i < 100; i++) {
-    a.push(2*i);
-}
-
-console.log('a = ', a);
-console.log('a[0] = ', a[0], ', a[10] = ', a[10], ', a[99] = ', a[99], ', a.length = ', a.length);
-console.log('indexOf(4) = ', a.indexOf(4));
-console.log('a.pop() = ', a.pop());
-console.log('a.length = ', a.length);
-
-// Array transformations
-var b = a.map(i => Math.pow(i, 2));
-var c = b.slice(0, 8);
-
-console.log('b = a.map(i => Math.pow(i, 2))');
-console.log('c = b.slice(0, 8) = ', c);
-
-console.log('****** copyWithin ******')
-var d = c.copyWithin(0, 5, 8);
-console.log('d = c.copyWithin(0, 5, 8) = ', d);
-console.log('c = ', c);
-console.log('c === d ? ', c === d);
+var concatTest = '01 concat: ["a","b","c"].concat(["d","e","f"]); // result:';
+let a01 = ["a","b","c"];
+console.log(concatTest, a01.concat(["d","e","f"]), ', array state after:', a01);
+console.log();
+let a02 = [0,1,2,3,4,5,6];
+process.stdout.write(`02 copyWith: [0,1,2,3,4,5,6].copyWithin(2, 4, 6); // result: [${a02.copyWithin(2, 4, 6)}], array state after: [${a02}]\n`);
+console.log();
+console.log('03 entries: ["a", "b", "c"].entries().next().value; // return iterator, result:', ["a", "b", "c"].entries().next().value);
+console.log();
+console.log('04 every: [0,1,2,3,4,5,6].every(x => x < 10); // result:', [0,1,2,3,4,5,6].every(x => x < 10));
+console.log();
+let a05 = [0,1,2,3,4,5,6];
+process.stdout.write(`05 fill: [0,1,2,3,4,5,6].fill(0); // result: [${a05.fill(0)}], array state after: [${a05}]\n`);
+console.log();
+process.stdout.write(`05 fill: [0,1,2,3,4,5,6].fill(0, 3); // result: [${[0,1,2,3,4,5,6].fill(0, 3)}]\n`);
+console.log();
+process.stdout.write(`05 fill: [0,1,2,3,4,5,6].fill(0, 3, 5); // result: [${[0,1,2,3,4,5,6].fill(0, 3, 5)}]\n`);
+console.log();
+process.stdout.write(`06 filter: [0,1,2,3,4,5,6].filter(x => x % 2 === 0); // result: [${[0,1,2,3,4,5,6].filter(x => x % 2 === 0)}]\n`);
+console.log();
+console.log('07 find: ["a0","a1","a2","a3","a4","a5","a6"].find(x => x === "a4"); // result:', ["a0","a1","a2","a3","a4","a5","a6"].find(x => x === "a4"));
+console.log();
+console.log('08 findIndex: ["a0","a1","a2","a3","a4","a5","a6"].findIndex(x => x === "a4"); // result:', ["a0","a1","a2","a3","a4","a5","a6"].findIndex(x => x === "a4"));
+console.log();
+var forEachTest = '09 forEach: (() => {var fat9 = 1; [0,1,2,3,4,5,6,7,8,9].forEach(x => fat9 *= (x<=0?1:x)); return fat9;})(); // result fat9:';
+console.log(forEachTest, (() => {var fat9 = 1; [0,1,2,3,4,5,6,7,8,9].forEach(x => fat9 *= (x<=0?1:x)); return fat9;})());
+console.log();
+process.stdout.write(`10 Array.from: Array.from('foo'); // result: [${Array.from('foo')}] (like 'foo'.split()\n`);
+console.log();
+process.stdout.write(`10 Array.from: Array.from([1,2,3], x=>x+x); // result: [${Array.from([1,2,3], x=>x+x)}], like map\n`);
+console.log();
+console.log('11 includes: ["a0","a1","a2","a3","a4","a5","a6"].includes("a4"); // result:', ['a0','a1','a2','a3','a4','a5','a6'].includes('a4'));
+console.log();
+console.log(`12 indexOf: ['b','a','n','a','n','a'].indexOf('n'); // result:`, ['b','a','n','a','n','a'].indexOf('n'));
+console.log();
+console.log('13 Array.isArray: Array.isArray([1,2,3]); // result:', Array.isArray([1,2,3]));
+console.log();
+console.log('13 Array.isArray: Array.isArray("foo"); // result:', Array.isArray('foo'));
+console.log();
+console.log(`14 join: ['b','a','n','a','n','a'].join(); // type is: '${typeof(['b','a','n','a','n','a'].join())}' result:" '${['b','a','n','a','n','a'].join()}'`);
+console.log();
+console.log(`14 join: ['b','n','n'].join('a'); // type is: '${typeof(['b','n','n'].join('a'))}' result: '${['b','n','n'].join('a')}'`);
+console.log();
+console.log(`15 keys: Array.from(['b','n','n'].keys()); // result is iterator, converted to array is: [${Array.from(['b','n','n'].keys())}]`);
+console.log();
+console.log(`16 lastIndexOf: ['b','a','n','a','n','a'].lastIndexOf('n'); // result: ${['b','a','n','a','n','a'].lastIndexOf('n')}`);
+console.log();
+process.stdout.write(`17 map: (new Array(10)).fill(0).map((x, i) => x + i); // result: [${(new Array(10)).fill(0).map((x, i) => x + i)}]\n`);
+console.log();
+let a18 = ['b','a','n','a','n','a'];
+console.log(`18 pop: ['b','a','n','a','n','a'].pop(); // result: '${a18.pop()}', array state after: [${a18}]`);
+console.log();
+console.log(`18 push: ['b','a','n','a','n'].push('a'); // result: '${a18.push('a')}', array state after: [${a18}]`);
+console.log();
+console.log(`20 reduce: fat5 = [1,2,3,4].reduce((res,next,i)=>res + (i*next), 0); // result:`, [1,2,3,4].reduce((res,next,i)=>res + (i*next), 0));
+console.log();
+console.log(`21 reduceRight: [1,2,3,4].reduceRight((res,next,i)=>res + (i*next), 0); // result:`, [1,2,3,4].reduceRight((res,next,i)=>res + (i*next), 0));
+console.log();
+console.log(`22 reverse: [1,2,3,4,5,6,7].reverse(); // result: [${[1,2,3,4,5,6,7].reverse()}]`);
+console.log();
+console.log("23 shift: ['b','a','n','a','n','a'].shift(); // result:", a18.shift(), `, array state after: [${a18}]`);
+console.log();
+console.log(`24 slice: ['b','a','n','a','n','a'].slice(1, 4); // result: [${['b','a','n','a','n','a'].slice(1, 4)}]`);
+console.log();
+console.log(`25 some: ['b','a','n','a','n','a'].some(x => x === 'a'); // result:`, ['b','a','n','a','n','a'].some(x => x === 'a'));
+console.log();
+let a25 = ['b','a','n','a','n','a'];
+console.log(`26 sort: ['b','a','n','a','n','a'].sort(); // result:`, `[${a25.sort()}], array state after: [${a25}]`);
+console.log();
+let a26 = ['Jan', 'March', 'April', 'June'];
+console.log('splice(index, numElementsToBeReplacedOrZeroIfInsert, value) => return array with replaced elements (empty array if insert only)');
+console.log("27 splice: ['Jan', 'March', 'April', 'June'].splice(1,0,'Fev'); // result:", a26.splice(1,0,'Fev'), `, array state after: [${a26}]`);
+console.log();
+let a26b = ['Jan', 1, 2, 3, 'July','August'];
+console.log("27 splice: ['Jan', 1, 2, 3, 'July','August'].splice(1,3,'Fev','March', 'April', 'May','June'); // result:", a26b.splice(1,3,'Fev','March', 'April', 'May','June'), `, array state after: [${a26b}]`);
+console.log();
+let a27 = ['b',1,'1','a','n','a'];
+console.log(`28 toString: ['b',1,'1','a','n','a'].toString(); // result: '${a27.toString()}', array state after: [${a27}]`);
+console.log();
+console.log("29 unshift: ['b','a','n','a','n','a'].unshift('b'); // result:", a18.unshift('b'), `, array state after: [${a18}]`);
+console.log();
+console.log('valueOf: returns primitive type of Object');
+console.log("30 valueOf: 5 + ['b','a','n','a','n','a']; // result:", 5 + ['b','a','n','a','n','a']);
+console.log();
+console.log("30 valueOf: 5 + ['b','a','n','a','n','a'].valueOf(); // result:", 5 + ['b','a','n','a','n','a'].valueOf());
+console.log();
+console.log("30 valueOf: 5 + [1,2,3,4].valueOf(); // result:", 5 + [1,2,3,4].valueOf());
